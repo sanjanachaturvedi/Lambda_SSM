@@ -1,13 +1,19 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template describing your function.
+Parameters:
+    CodeKey:
+        Type: String
+
 Resources:
   SanjanaSSMLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: lambda_function.lambda_handler
       Runtime: python2.7
-      CodeUri: s3://sanjana-ssmbucket/SanjanaSSM-Lambda2-1e0d18b0-0afc-447f-b028-74d99ccc6d66.zip
+      CodeUri:
+           Bucket: 'sanjana-ssmbucket'
+           Key: !Ref CodeKey
       Description: ''
       MemorySize: 128
       Timeout: 3
